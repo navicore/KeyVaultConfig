@@ -1,0 +1,10 @@
+target/
+project/target/
+project/project/
+boot/
+lib_managed/
+src_managed/
+project/plugins/project/
+.idea/
+.ensime
+.ensime-cache/
