@@ -25,7 +25,7 @@ libraryDependencies ++=
 
 libraryDependencies ~= { _.map(_.exclude("org.slf4j", "slf4j-simple")) }
 
-mainClass in assembly := Some("onextent.k8s.azure.keyvault.configmap.Main")
+mainClass in assembly := Some("onextent.azure.keyvault.config.Main")
 assemblyJarName in assembly := "KeyVaultConfig.jar"
 
 assemblyMergeStrategy in assembly := {
