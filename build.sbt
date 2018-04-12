@@ -1,4 +1,4 @@
-name := "Keyvaultconfigmap"
+name := "KeyVaultConfigMap"
 
 fork := true
 javaOptions in test ++= Seq(
@@ -15,15 +15,15 @@ scalaVersion := "2.12.4"
 
 libraryDependencies ++=
   Seq(
-    "org.typelevel" %% "cats-core" % "1.0.1",
-    "com.chuusai" %% "shapeless" % "2.3.2",
-    "io.github.mkotsur" %% "aws-lambda-scala" % "0.0.10",
+    "com.typesafe" % "config" % "1.3.1",
+    "ch.qos.logback" % "logback-classic" % "1.1.7",
+    "com.typesafe.scala-logging" %% "scala-logging" % "3.5.0",
 
     "org.scalatest" %% "scalatest" % "3.0.5" % "test"
   )
 
 mainClass in assembly := Some("onextent.k8s.azure.keyvault.configmap.Main")
-assemblyJarName in assembly := "Keyvaultconfigmap.jar"
+assemblyJarName in assembly := "KeyVaultConfigMap.jar"
 
 assemblyMergeStrategy in assembly := {
   case PathList("reference.conf") => MergeStrategy.concat

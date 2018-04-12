@@ -1,0 +1,39 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    run: kuard
+  name: kuard
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: kuard
+  template:
+    metadata:
+      labels:
+        run: kuard
+    spec:
+      imagePullSecrets:
+      - name: navidock
+      volumes:
+      - name: config-data
+        emptyDir: {}
+      initContainers:
+      - name: init-me
+        image: navicore/keyvaultconfigmap
+        imagePullPolicy: Always
+        env:
+        - name: SECRETS_FILE_LOCATION
+          value: "/opt/config/uasecrets.yaml"
+        - name: SECRETS_SPEC
+          value: "urbanAirship.apiKey:UA_APIKEY,urbanAirship.token:UA_TOKEN"
+        volumeMounts:
+        - name: config-data
+          mountPath: /opt/config
+      containers:
+      - name: kuard
+        image: gcr.io/kuar-demo/kuard-amd64:1
+        volumeMounts:
+        - name: config-data
+          mountPath: /opt/config

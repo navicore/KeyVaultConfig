@@ -1,19 +1,28 @@
 package onextent.k8s.azure.keyvault.configmap
 
-// import io.circe.generic.auto._
-// import io.github.mkotsur.aws.handler.Lambda._
-// import io.github.mkotsur.aws.handler.Lambda
-//
-// case class Ping(inputMsg: String)
-//
-// case class Pong(outputMsg: String)
-//
-// class Main extends Lambda[Ping, Pong] {
-//
-//   override def handle(ping: Ping) = Right(Pong(ping.inputMsg.reverse))
-//
-// }
+import java.io._
+
+import com.typesafe.config.{Config, ConfigFactory}
 
 object Main extends App {
-  // got any helpful boilerplate for your users?
+
+  val conf: Config = ConfigFactory.load()
+
+  val pw = new PrintWriter(new File(conf.getString("main.fileLoc")))
+
+  val specs = conf.getString("main.secretsSpec").split(",")
+
+  specs.foreach  (spec => {
+
+    val srec = spec.split(":")
+    if (srec.length == 2) {
+      val configName = srec(0)
+      val vaultName = srec(1)
+      val secretValue = vaultName // todo: vault value
+      pw.println(s"""$configName = "$secretValue"""")
+    }
+  })
+
+  pw.close()
+
 }
