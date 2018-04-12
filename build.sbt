@@ -1,4 +1,4 @@
-name := "KeyVaultConfigMap"
+name := "KeyVaultConfig"
 
 fork := true
 javaOptions in test ++= Seq(
@@ -37,7 +37,7 @@ libraryDependencies ++=
 libraryDependencies ~= { _.map(_.exclude("org.slf4j", "slf4j-simple")) }
 
 mainClass in assembly := Some("onextent.k8s.azure.keyvault.configmap.Main")
-assemblyJarName in assembly := "KeyVaultConfigMap.jar"
+assemblyJarName in assembly := "KeyVaultConfig.jar"
 
 assemblyMergeStrategy in assembly := {
   case PathList("reference.conf") => MergeStrategy.concat

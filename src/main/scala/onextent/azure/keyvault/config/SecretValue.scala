@@ -1,4 +1,4 @@
-package onextent.k8s.azure.keyvault.configmap
+package onextent.azure.keyvault.config
 
 import java.io.IOException
 
@@ -34,7 +34,7 @@ object SecretValue extends LazyLogging {
     Option(vault.client().getSecret(vault.vaultUri(), secretName)) match {
       case Some(secretBundle) =>
         val secret = secretBundle.value()
-        logger.debug(s"found $secretName has a value of $secret") // todo: delete me
+        logger.debug(s"found secret for key '$secretName'")
         secret
       case _ =>
         logger.error(s"did not find $secretName")

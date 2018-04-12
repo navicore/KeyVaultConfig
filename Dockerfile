@@ -6,5 +6,5 @@ COPY target/scala-2.12/*.jar /app/
 
 WORKDIR /app
 
-CMD java -jar /app/KeyVaultConfigMap.jar
+CMD java -jar /app/KeyVaultConfig.jar
 

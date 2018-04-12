@@ -1,4 +1,4 @@
-package onextent.k8s.azure.keyvault.configmap
+package onextent.azure.keyvault.config
 
 import org.scalatest._
 

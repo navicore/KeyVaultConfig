@@ -1,4 +1,4 @@
-package onextent.k8s.azure.keyvault.configmap
+package onextent.azure.keyvault.config
 
 import java.io._
 
@@ -8,7 +8,8 @@ object Main extends App {
 
   val conf: Config = ConfigFactory.load()
 
-  val pw = new PrintWriter(new File(conf.getString("main.fileLoc")))
+  val configFile = new File(conf.getString("main.fileLoc"))
+  val pw = new PrintWriter(new FileOutputStream( configFile, true))
 
   val specs = conf.getString("main.secretsSpec").split(",")
 
