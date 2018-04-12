@@ -13,9 +13,6 @@ version := "1.0"
 
 scalaVersion := "2.12.4"
 
-resolvers +=
-  "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
-
 libraryDependencies ++=
   Seq(
     "com.typesafe" % "config" % "1.3.1",
@@ -36,6 +33,8 @@ libraryDependencies ++=
 
     "org.scalatest" %% "scalatest" % "3.0.5" % "test"
   )
+
+libraryDependencies ~= { _.map(_.exclude("org.slf4j", "slf4j-simple")) }
 
 mainClass in assembly := Some("onextent.k8s.azure.keyvault.configmap.Main")
 assemblyJarName in assembly := "KeyVaultConfigMap.jar"
