@@ -2,17 +2,17 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    run: kuard
-  name: kuard
+    run: akka-docker-dummy
+  name: akka-docker-dummy
 spec:
   replicas: 1
   selector:
     matchLabels:
-      run: kuard
+      run: akka-docker-dummy
   template:
     metadata:
       labels:
-        run: kuard
+        run: akka-docker-dummy
     spec:
       imagePullSecrets:
       - name: navidock
@@ -25,15 +25,17 @@ spec:
         imagePullPolicy: Always
         env:
         - name: SECRETS_FILE_LOCATION
-          value: "/opt/config/uasecrets.yaml"
+          value: "/opt/config/overrides.yaml"
         - name: SECRETS_SPEC
-          value: "urbanAirship.apiKey:UA_APIKEY,urbanAirship.token:UA_TOKEN"
+          #value: "main.path:MAIN_PATH,main.port:MAIN_PORT"
+          value: "main.path:ipa,main.port:9090"
         volumeMounts:
         - name: config-data
           mountPath: /opt/config
       containers:
-      - name: kuard
-        image: gcr.io/kuar-demo/kuard-amd64:1
+      - name: dummy
+        image: navicore/akka-docker-dummy
+        imagePullPolicy: Always
         volumeMounts:
         - name: config-data
           mountPath: /opt/config
