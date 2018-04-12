@@ -1,0 +1,33 @@
+language: scala
+
+# These directories are cached to S3 at the end of the build
+cache:
+  directories:
+    - $HOME/.ivy2/cache
+    - $HOME/.sbt/boot/
+
+jdk:
+  - oraclejdk8
+
+script:
+  ## This runs the template with the default parameters, and runs test within the templated app.
+  - sbt -Dfile.encoding=UTF8 -J-XX:ReservedCodeCacheSize=256M test assembly
+  - docker build -t navicore/keyvaultconfig .
+
+  # Tricks to avoid unnecessary cache updates
+  - find $HOME/.sbt -name "*.lock" | xargs rm
+  - find $HOME/.ivy2 -name "ivydata-*.properties" | xargs rm
+
+sudo: required
+
+services:
+  - docker
+
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
+    docker push navicore/keyvaultconfig;
+    docker tag "navicore/keyvaultconfig" "navicore/keyvaultconfig:0.1.$TRAVIS_BUILD_NUMBER";
+    docker push "navicore/keyvaultconfig:0.1.$TRAVIS_BUILD_NUMBER";
+    fi
+
