@@ -13,11 +13,26 @@ version := "1.0"
 
 scalaVersion := "2.12.4"
 
+resolvers +=
+  "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
+
 libraryDependencies ++=
   Seq(
     "com.typesafe" % "config" % "1.3.1",
     "ch.qos.logback" % "logback-classic" % "1.1.7",
     "com.typesafe.scala-logging" %% "scala-logging" % "3.5.0",
+    //"com.microsoft.azure" % "azure-keyvault" % "1.1-beta-1",
+    "com.microsoft.azure" % "azure-keyvault" % "1.0.0",
+    //"com.microsoft.azure" % "azure-keyvault-cryptography" % "1.1-beta-1",
+    "com.microsoft.azure" % "azure-keyvault-cryptography" % "1.0.0",
+    //"com.microsoft.azure" % "azure-keyvault-extensions" % "1.1-beta-1",
+    "com.microsoft.azure" % "azure-keyvault-extensions" % "1.0.0",
+
+    "com.microsoft.azure" % "azure-keyvault-core" % "1.0.0",
+    "com.microsoft.azure" % "azure-keyvault-webkey" % "1.0.0",
+
+    "com.microsoft.azure" % "adal4j" % "1.4.0",
+    "com.microsoft.azure" % "azure" % "1.8.0",
 
     "org.scalatest" %% "scalatest" % "3.0.5" % "test"
   )

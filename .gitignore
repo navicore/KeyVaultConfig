@@ -1,4 +1,5 @@
 target/
+ENV.sh
 project/target/
 project/project/
 boot/
