@@ -33,7 +33,7 @@ object SecretValue extends LazyLogging {
 
     Option(vault.client().getSecret(vault.vaultUri(), secretName)) match {
       case Some(secretBundle) =>
-        val secret = secretBundle.toString
+        val secret = secretBundle.value()
         logger.debug(s"found $secretName has a value of $secret") // todo: delete me
         secret
       case _ =>
