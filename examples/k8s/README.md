@@ -3,7 +3,7 @@ kubectl create secret generic azure-client-secret --from-literal AZURE_CLIENT_SE
 ```
 
 ```console
-kubectl create configmap demo-vault-config --from-env-file=examples/k8s/test/demoConfigMap.yaml
+kubectl create configmap demo-vault-config --from-env-file=examples/k8s/test/demoConfigMap.properties
 ```
 
 ```console
