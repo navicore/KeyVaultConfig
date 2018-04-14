@@ -27,7 +27,7 @@ Configure the config override entries with `SECRETS_SPEC` where each pair is `li
 ```yaml
 env:
 - name: SECRETS_SPEC
-  value: "main.path:MAIN_PATH,main.port:MAIN_PORT"
+  value: "akka.contrib.persistence.mongodb.mongo.mongouri:PROD_DB_MONGOURI"
 ```
 
 Configure the location of the file via:
