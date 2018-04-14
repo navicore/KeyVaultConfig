@@ -63,6 +63,22 @@ Change your application running in the container to support the presence of an o
   // ...
 ```
 
+then in your kubernetes yaml tell your app where to find the overrides.
+
+for initContainer:
+```console
+        env:
+        - name: CONFIG_OVERRIDES_URL
+          value: "file:///opt/config/overrides.yaml"
+```
+
+for sidecar container:
+```console
+        env:
+        - name: CONFIG_OVERRIDES_URL
+          value: "http://localhost:8998/config"
+```
+
 ### Examples
 
 See [examples/k8s](examples/k8s) dir for a working examples.
