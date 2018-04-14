@@ -7,7 +7,7 @@ An 'init container' to override [Lightbend Config](https://github.com/lightbend/
 
 The `initContainer` will look up secrets and store them in a file available to the application running in the same pod.
 
-Can also be configured as a sidecar if you don't want to write secrets to disk.
+Can also be configured as a sidecar if you don't want to persist secrets.
 
 Configure the vault auth with environment vars via a configmap as:
 
@@ -23,7 +23,7 @@ env:
   value: "/subscriptions/SETME/resourceGroups/SETME/providers/Microsoft.KeyVault/vaults/SETME"
 ```
 
-Configure the config file entries with `SECRETS_SPEC` where each pair is `lightbendConfigPath:secretName`:
+Configure the config override entries with `SECRETS_SPEC` where each pair is `lightbendConfigPath:secretName`:
 ```yaml
 env:
 - name: SECRETS_SPEC
@@ -37,7 +37,7 @@ env:
   value: "/opt/config/overrides.yaml"
 ```
 
-To enable sidecar container http://localhost:8998 http server, configure via:
+To enable sidecar a container http://localhost:8998 http server, configure via:
 ```yaml
 env:
 - name: IS_SIDECAR
