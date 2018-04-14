@@ -9,7 +9,7 @@ The `initContainer` will look up secrets and store them in a file available to t
 
 Can also be configured as a sidecar if you don't want to persist secrets.
 
-Configure the vault auth with environment vars via a configmap as:
+Configure the vault auth with environment vars (but with k8s configmaps and secrets) as:
 
 ```yaml
 env:
