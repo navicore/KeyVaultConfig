@@ -1,25 +1,22 @@
 package onextent.azure.keyvault.config.routes
 
+import java.io.StringWriter
+
 import akka.http.scaladsl.model.{ContentTypes, HttpEntity}
 import akka.http.scaladsl.server.{Directives, Route}
 import com.typesafe.scalalogging.LazyLogging
-import onextent.azure.keyvault.config.ErrorSupport
-import onextent.azure.keyvault.config.models.JsonSupport
+import onextent.azure.keyvault.config.ConfigWriter
 
-object ConfigRoute
-    extends JsonSupport
-    with LazyLogging
-    with Directives
-    with ErrorSupport {
+object ConfigRoute extends LazyLogging with Directives with ErrorSupport {
 
   def apply: Route =
     path(urlpath) {
       handleErrors {
         get {
           logger.debug(s"get $urlpath")
-          complete(
-            HttpEntity(ContentTypes.`application/json`,
-                       "{\"msg\": \"Say hello to Key Vault Config\"}\n"))
+          val sw = new StringWriter()
+          ConfigWriter(sw)
+          complete(HttpEntity(ContentTypes.`text/plain(UTF-8)`, sw.toString))
         }
       }
     }

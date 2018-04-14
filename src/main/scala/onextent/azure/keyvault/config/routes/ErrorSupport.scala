@@ -1,27 +1,17 @@
-package onextent.azure.keyvault.config
+package onextent.azure.keyvault.config.routes
 
 import java.io.IOException
 
 import akka.http.scaladsl.model._
-import akka.http.scaladsl.model.headers.HttpOrigin
 import akka.http.scaladsl.server.Directives._
-import akka.http.scaladsl.server.{Directive, ExceptionHandler, RejectionHandler, Route}
+import akka.http.scaladsl.server.{Directive, ExceptionHandler, RejectionHandler}
 import com.typesafe.config.{Config, ConfigFactory}
 import com.typesafe.scalalogging.LazyLogging
-
-import scala.collection.JavaConverters._
 
 trait ErrorSupport extends LazyLogging {
 
   val conf: Config = ConfigFactory.load()
-  val corsOriginList: List[HttpOrigin] = conf
-    .getStringList("main.corsOrigin")
-    .asScala
-    .iterator
-    .toList
-    .map(origin => HttpOrigin(origin))
-  val urlpath: String = conf.getString("main.path")
-  val port: Int = conf.getInt("main.port")
+  val urlpath: String = "config"
 
   val rejectionHandler: RejectionHandler = RejectionHandler.default
 
@@ -40,10 +30,4 @@ trait ErrorSupport extends LazyLogging {
     : Directive[Unit] = handleRejections(rejectionHandler) & handleExceptions(
     exceptionHandler)
 
-  def HealthCheck: Route =
-    path("healthcheck") {
-      get {
-        complete("ok")
-      }
-    }
 }
