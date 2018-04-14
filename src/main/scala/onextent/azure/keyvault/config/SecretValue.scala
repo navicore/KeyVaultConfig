@@ -20,6 +20,7 @@ object SecretValue extends LazyLogging {
       System.getenv("AZURE_CLIENT_SECRET"),
       AzureEnvironment.AZURE)
     logger.info(s"accessing Azure with client ID ${credentials.clientId}")
+    logger.warn(s"ejs todo: remove accessing Azure with client secret ${sys.env.get("AZURE_CLIENT_SECRET")}")
     Azure.configure
       .withLogLevel(LogLevel.BASIC)
       .authenticate(credentials)
