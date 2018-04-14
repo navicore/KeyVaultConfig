@@ -19,6 +19,7 @@ object SecretValue extends LazyLogging {
       System.getenv("AZURE_TENANT_ID"),
       System.getenv("AZURE_CLIENT_SECRET"),
       AzureEnvironment.AZURE)
+    logger.info(s"accessing Azure with client ID ${credentials.clientId}")
     Azure.configure
       .withLogLevel(LogLevel.BASIC)
       .authenticate(credentials)
