@@ -2,17 +2,17 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    run: akka-docker-dummy
-  name: akka-docker-dummy
+    run: init-container-demo
+  name: init-container-demo
 spec:
   replicas: 1
   selector:
     matchLabels:
-      run: akka-docker-dummy
+      run: init-container-demo
   template:
     metadata:
       labels:
-        run: akka-docker-dummy
+        run: init-container-demo
     spec:
       volumes:
       - name: config-data
@@ -37,9 +37,8 @@ spec:
         - name: config-data
           mountPath: /opt/config
       containers:
-      - name: dummy
+      - name: dummy-app
         image: navicore/akka-docker-dummy
-        imagePullPolicy: Always
         volumeMounts:
         - name: config-data
           mountPath: /opt/config
