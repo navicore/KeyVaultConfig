@@ -1,3 +1,4 @@
+examples/k8s/test/
 target/
 ENV.sh
 project/target/
