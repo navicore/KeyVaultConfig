@@ -23,10 +23,6 @@ spec:
         env:
         - name: IS_SIDECAR
           value: "true"
-        - name: SECRETS_SPEC
-          # format is a comma delimited list of pairs "config.name:secretName,..."
-          # ie: "akka.contrib.persistence.mongodb.mongo.mongouri:PROD_DB_MONGOURI"
-          value: "main.path:MAIN_PATH,main.port:MAIN_PORT"
       - name: dummy-app
         image: navicore/akka-docker-dummy:0.1.1
         env:

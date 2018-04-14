@@ -26,10 +26,6 @@ spec:
         env:
         - name: SECRETS_FILE_LOCATION
           value: "/opt/config/overrides.yaml"
-        - name: SECRETS_SPEC
-          # format is a comma delimited list of pairs "config.name:secretName,..."
-          # ie: "akka.contrib.persistence.mongodb.mongo.mongouri:PROD_DB_MONGOURI"
-          value: "main.path:MAIN_PATH,main.port:MAIN_PORT"
         volumeMounts:
         - name: config-data
           mountPath: /opt/config
