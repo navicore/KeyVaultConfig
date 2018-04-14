@@ -43,7 +43,9 @@ env:
 - name: IS_SIDECAR
   value: "true"
 ```
-Using the sidecar, no secrets are persisted and only containers in the same pod can access the localhost port - no networking and thus no https.
+Using the sidecar, no secrets are persisted and only containers in the same pod can access the localhost port - no networking and thus no https. 
+
+NOTE: The sidecar may initialize too slowly for your app and your app will be restarted by Kubernetes until it successfully connects to the sidecar.
 
 ### App Changes
 

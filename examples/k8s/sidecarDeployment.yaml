@@ -17,17 +17,12 @@ spec:
       containers:
       - name: keyvault-sidecar
         image: navicore/keyvaultconfig:0.1.8
+        envFrom:
+        - configMapRef:
+            name: demo-vault-config
         env:
         - name: IS_SIDECAR
           value: "true"
-        - name: AZURE_CLIENT_ID
-          value: "SET ME"
-        - name: AZURE_CLIENT_SECRET
-          value: "SET ME"
-        - name: AZURE_TENANT_ID
-          value: "SET ME"
-        - name: KEYVAULT_ID
-          value: "/subscriptions/SETME/resourceGroups/SETME/providers/Microsoft.KeyVault/vaults/SETME"
         - name: SECRETS_SPEC
           # format is a comma delimited list of pairs "config.name:secretName,..."
           # ie: "akka.contrib.persistence.mongodb.mongo.mongouri:PROD_DB_MONGOURI"

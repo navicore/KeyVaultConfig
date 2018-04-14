@@ -1,0 +1,4 @@
+AZURE_CLIENT_ID=SETME
+AZURE_CLIENT_SECRET=SETME
+AZURE_TENANT_ID=SETME
+KEYVAULT_ID=/subscriptions/SETME/resourceGroups/SETME/providers/Microsoft.KeyVault/vaults/SETME
