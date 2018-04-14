@@ -24,8 +24,11 @@ spec:
         - configMapRef:
             name: demo-vault-config
         env:
-        - name: SECRETS_FILE_LOCATION
-          value: "/opt/config/overrides.yaml"
+        - name: AZURE_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: azure-client-secret
+              key: AZURE_CLIENT_SECRET
         volumeMounts:
         - name: config-data
           mountPath: /opt/config

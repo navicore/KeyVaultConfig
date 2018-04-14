@@ -23,6 +23,11 @@ spec:
         env:
         - name: IS_SIDECAR
           value: "true"
+        - name: AZURE_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: azure-client-secret
+              key: AZURE_CLIENT_SECRET
       - name: dummy-app
         image: navicore/akka-docker-dummy:0.1.1
         env:
