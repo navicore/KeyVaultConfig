@@ -36,7 +36,6 @@ object SecretValue extends LazyLogging {
       case Some(secretBundle) =>
         val secret = secretBundle.value()
         logger.debug(s"found secret for key '$secretName'")
-        logger.warn(s"ejs found secret for key '$secretName' is '$secret'") //delete me
         secret
       case _ =>
         logger.error(s"did not find $secretName")
