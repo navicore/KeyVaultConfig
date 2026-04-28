@@ -1,3 +1,8 @@
+<!-- ghmig:moved -->
+> **This repository has moved to [https://git.navicore.tech/navicore/KeyVaultConfig](https://git.navicore.tech/navicore/KeyVaultConfig).**
+>
+> The GitHub copy is archived and no longer maintained.
+
 [![Build Status](https://travis-ci.org/navicore/KeyVaultConfig.svg?branch=master)](https://travis-ci.org/navicore/KeyVaultConfig)
 
 Azure Key Vault Secrets Init Container and Sidecar Container
@@ -82,4 +87,3 @@ for sidecar container:
 ### Examples
 
 See [examples/k8s](examples/k8s) dir for a working examples.
-
